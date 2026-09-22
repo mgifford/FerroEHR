@@ -1,0 +1,87 @@
+# Fork-only viewer accessibility report (mgifford/FerroEHR).
+#
+# Composes the published FerroEHR stack (server + PostgreSQL + viewer), logs in
+# to the viewer, and runs axe-core (WCAG 2.2 A/AA) over its routes in both light
+# and dark themes. This is the standing check that the audited viewer issues
+# (light-theme contrast #1, decorative icons #2) cannot silently regress.
+#
+# It uses the PUBLISHED images as fixtures rather than building the viewer from
+# source: a source build needs cargo-leptos and a large target tree, which is
+# disproportionate for a report lane. Point FERROEHR_VIEWER_IMAGE at a fork-built
+# image once one is published to see fork changes reflected; until then it
+# reports on the upstream release the fork descends from.
+#
+# Non-blocking (the scan always exits 0) — the baseline-then-tighten path the
+# static-site report established. Runs on demand and weekly; not on every push,
+# since it pulls images and boots a database.
+name: Viewer a11y (fork)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 6 * * 1" # Mondays 06:37 UTC
+
+permissions: {}
+
+concurrency:
+  group: viewer-a11y-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    name: axe-core over the running viewer
+    if: github.repository == 'mgifford/FerroEHR'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    env:
+      # Published images as fixtures. Override FERROEHR_VIEWER_IMAGE to a
+      # fork-built viewer image to test fork changes.
+      FERROEHR_IMAGE: ghcr.io/rubentalstra/ferroehr:4.3.1
+      FERROEHR_POSTGRES_IMAGE: ghcr.io/rubentalstra/ferroehr-postgres:4.3.1
+      FERROEHR_VIEWER_IMAGE: ghcr.io/rubentalstra/ferroehr-viewer:4.3.1
+      COMPOSE_PROJECT_NAME: ferroehr-a11y
+      COMPOSE_PROFILES: viewer
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+      - name: Bring up the stack (server + postgres + viewer)
+        run: docker compose up -d --no-build ferroehr ferroehr-viewer
+      - name: Wait for the CDR to report UP
+        run: |
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:8080/ferroehr/rest/status >/dev/null; then
+              echo "CDR up"; exit 0
+            fi
+            sleep 3
+          done
+          echo "CDR did not come up in time"; docker compose logs --tail=50 ferroehr; exit 1
+      - name: Wait for the viewer to answer
+        run: |
+          for i in $(seq 1 40); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -L http://localhost:3000/login || true)
+            if [ "$code" = "200" ]; then echo "viewer up"; exit 0; fi
+            sleep 3
+          done
+          echo "viewer did not answer in time"; docker compose logs --tail=50 ferroehr-viewer; exit 1
+      - name: Accessibility report (axe-core, both themes, authenticated)
+        run: |
+          npm install --no-save @axe-core/playwright playwright
+          npx playwright install --with-deps chromium
+          node scripts/site/axe-scan-viewer.mjs http://127.0.0.1:3000 ferroehr ferroehr
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: viewer-axe-report
+          path: axe-viewer-report.json
+          if-no-files-found: warn
+      - name: Tear down
+        if: always()
+        run: docker compose down -v || true
