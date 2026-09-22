@@ -53,8 +53,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-a { color: var(--rs-rust); text-decoration: none; }
-a:hover { color: var(--rs-rust-600); text-decoration: underline; }
+/* In-prose links are underlined by default so they are distinguishable from
+   surrounding text without relying on colour (WCAG 2.2 1.4.1); the rust colour
+   alone is 1.09:1 against the muted body text, below the 3:1 non-text-contrast
+   floor. Chrome links (nav, buttons, brand) opt out via their own classes
+   below, which set text-decoration: none at equal-or-greater specificity. */
+a { color: var(--rs-rust); text-decoration: underline; }
+a:hover { color: var(--rs-rust-600); }
+/* Chrome links are obviously interactive by shape/position and are exempt from
+   the in-text underline (WCAG 1.4.1 exempts links in nav/menus/buttons): the
+   wordmark, nav items, buttons, status pills, and the image link. */
+.brand, .nav-links a, .btn, .pill, .proof-grid { text-decoration: none; }
 
 img, svg { max-width: 100%; height: auto; }
 
