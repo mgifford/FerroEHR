@@ -64,6 +64,19 @@ jobs:
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Assemble _site (landing + /docs/dev/, sub-path base)
         run: bash scripts/site/build.sh --dev-only
+      # Accessibility gate: axe-core (WCAG 2.2 A/AA) over the assembled site,
+      # BEFORE deploy, so a regression blocks publish. This is what would have
+      # caught the landing-page link-in-text-block finding. Detector, not a
+      # conformance verdict; the floor only ratchets up.
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+      - name: Accessibility gate (axe-core over _site)
+        run: |
+          npm install --no-save @axe-core/playwright playwright
+          npx playwright install --with-deps chromium
+          node scripts/site/axe-scan.mjs _site /FerroEHR
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: _site
