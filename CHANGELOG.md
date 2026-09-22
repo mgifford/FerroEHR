@@ -80,6 +80,12 @@ workflow refuses a tag that has no matching section here.
 
 ### Fixed
 
+- **Viewer decorative icons were hidden from assistive technology** (#2). The
+  `leptos_icons` `<Icon>` renders an `<svg>` with no `aria-hidden`, so decorative
+  icons on the audited routes (sidebar nav, stat cards, empty states, and the
+  theme-toggle, menu, and user-menu buttons) were announced to screen readers as
+  unnamed graphics (WCAG 2.2 1.1.1). Each now carries `aria-hidden="true"`; every
+  affected control keeps its own name or adjacent text.
 - **A date with text after it compares as no date** (#3436). `openehr_date_days`
   read the leading four, six or eight characters of a value and ignored the
   rest, so `20210102XYZ`, `2021-01-02 BC`, `2021-01-02 Europe/Amsterdam` and

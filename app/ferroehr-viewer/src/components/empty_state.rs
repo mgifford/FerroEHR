@@ -29,7 +29,7 @@ pub fn EmptyState(
     view! {
         <div class="flex flex-col items-center justify-center gap-2 rounded-card border border-dashed border-edge-strong px-6 py-10 text-center">
             <span class="flex h-10 w-10 items-center justify-center rounded-full bg-sunken text-ink-faint">
-                <Icon icon width="20" height="20" />
+                <Icon icon width="20" height="20" attr:aria-hidden="true" />
             </span>
             <p class="text-sm font-medium text-ink">{message}</p>
             {hint
