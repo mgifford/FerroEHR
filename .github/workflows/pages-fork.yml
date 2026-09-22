@@ -1,0 +1,71 @@
+# Fork-only GitHub Pages workflow (mgifford/FerroEHR).
+#
+# Publishes the documentation site (landing + the dev mdBook) to this fork's
+# project-pages URL, https://mgifford.github.io/FerroEHR/. It is deliberately
+# separate from the upstream `docs.yml`, which targets the ferroehr.eu apex
+# domain, cuts frozen per-release versions from a `docs-dist` branch, and runs
+# conformance/drift gates a fork has no reason to reproduce.
+#
+# Differences from docs.yml, all forced by "project pages under a sub-path,
+# one fork, no release pipeline":
+#   - SITE_BASE=/FerroEHR  (project pages live under /<repo>, not the apex root)
+#   - build.sh --dev-only  (no docs-dist, no frozen /docs/vX.Y.Z/ trees)
+#   - no conformance render / drift gates (those compare committed artifacts
+#     against a full regeneration the fork does not run)
+#
+# It runs ONLY on this fork: the guard on github.repository stops it from
+# firing if the branch is ever pushed to upstream.
+name: Pages (fork)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  SITE_ORIGIN: "https://mgifford.github.io"
+  SITE_BASE: "/FerroEHR"
+
+permissions: {}
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: build + deploy to Pages
+    # Fork guard: never run on the upstream repository.
+    if: github.repository == 'mgifford/FerroEHR'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      # Rust is needed for the tiny `docs-meta` tool the build runs over the
+      # assembled HTML (canonical + Open Graph metadata).
+      - uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0 # zizmor: ignore[cache-poisoning]
+      # The same pinned mdBook toolchain upstream uses (mdBook + mermaid + toc +
+      # katex). Lint and link-check are the build job's concern upstream; here
+      # the single deploy job assembles and ships, so ask for them off.
+      - uses: ./.github/actions/docs-toolchain
+        with:
+          lint: "false"
+          link-check: "false"
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Assemble _site (landing + /docs/dev/, sub-path base)
+        run: bash scripts/site/build.sh --dev-only
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+      - id: pages
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
