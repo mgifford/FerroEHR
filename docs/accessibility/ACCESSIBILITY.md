@@ -347,6 +347,40 @@ Recorded so the picture is honest — the foundation is sound:
 - Dark theme is a purpose-built palette (not a filter-invert) and passes
   contrast where light fails.
 
+## Light/dark mode: systemic improvements beyond contrast
+
+Measured against light/dark best practice. These are theme-architecture
+improvements the contrast fix (SYS-1) does not cover — candidates for their own
+issues.
+
+- **No "System" option.** The viewer has a **binary** light/dark toggle and
+  drives theming with a `.dark` class only; it does not honour
+  `prefers-color-scheme`. Best practice is three states — System (default,
+  follows the OS), Light, Dark — and a binary toggle is discouraged when System
+  is a supported state. A first-load user gets the app's default, not their OS
+  preference. *Improvement:* add a System option and resolve it from
+  `prefers-color-scheme`, keeping the explicit choice in storage only when the
+  user makes one.
+- **`color-scheme` for browser chrome.** Declare `color-scheme` so form
+  controls, scrollbars, and the like follow the resolved theme.
+- **Focus indicators per mode.** Not measured this pass — verify `:focus-visible`
+  is visible at 3:1 in **both** themes (SYS in the not-measured list). Best
+  practice: a `3px` outline with offset, plus a `forced-colors` fallback to
+  `Highlight`.
+- **Forced-colors / Windows High Contrast.** Not verified. Let the browser
+  substitute system colours (`Canvas`, `CanvasText`, `LinkText`, `Highlight`);
+  add targeted borders only where substitution removes a needed boundary. Avoid
+  `forced-color-adjust: none`.
+- **`currentColor` for icons.** Once SYS-2 hides decorative icons, ensure
+  meaningful inline SVGs use `fill="currentColor"` so they adapt to each theme
+  automatically (the icon component change is the place to do it).
+- **Colour is not the only cue.** The teal accent and the syntax-highlight
+  tokens should carry a non-colour cue where they signal meaning (status,
+  link-in-text). Not audited element-by-element this pass.
+- **Table zebra striping** (`data_table`): verify the alternate-row background
+  meets contrast in both themes and that selected/hover/focus row states remain
+  distinguishable; add a `forced-colors` row border.
+
 ## Not measured this pass
 
 Route to the keyboard/journey and screen-reader lanes before treating these as
