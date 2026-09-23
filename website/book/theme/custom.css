@@ -42,6 +42,21 @@
   color: #9aa0a6; /* 6.94:1 on ayu, 5.32:1 on coal/navy */
 }
 
+/* ── Target size (WCAG 2.2 2.5.8, mdBook chrome ≥ 24×24 CSS px) ────────────── */
+/* mdBook's top-bar icon links (print, git repository) render 36×22 and the
+   sidebar chapter links 81×21 — both one pixel class under the 24px minimum
+   height. Give them a 24px min-height without moving anything else. */
+.right-buttons a {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+}
+.chapter li a {
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
 /* ── Shared brand touches ────────────────────────────────────────────────── */
 /* In-prose links are underlined so they are distinguishable from surrounding
    text without relying on colour (WCAG 2.2 1.4.1); axe reports the rust link
