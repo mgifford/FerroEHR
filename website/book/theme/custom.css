@@ -33,12 +33,21 @@
 }
 
 /* ── Shared brand touches ────────────────────────────────────────────────── */
+/* In-prose links are underlined so they are distinguishable from surrounding
+   text without relying on colour (WCAG 2.2 1.4.1); axe reports the rust link
+   colour as link-in-text-block otherwise. Heading anchor links opt out below —
+   they are not in a text block and the underline would be noise. */
 .content a,
 .content a:visited {
   color: var(--links);
+  text-decoration: underline;
 }
 .content a:hover {
   color: var(--rs-rust-600);
+}
+/* Heading anchor links (mdBook's `.header`) are not prose — no underline. */
+.content a.header {
+  text-decoration: none;
 }
 
 /* Rust-tinted rule under page headings. */
@@ -62,7 +71,10 @@
 #rs-api-link {
   display: inline-flex;
   align-items: center;
-  color: var(--rs-rust);
+  /* Use the themed --links, not raw --rs-rust: #b7410e is 3.33:1 on the ayu
+     top bar (WCAG 1.4.3 fail). --links carries the theme-correct value —
+     #b7410e on light (5.56:1), #f08040 on the dark themes (6.93:1 on ayu). */
+  color: var(--links);
   font-weight: 600;
   text-decoration: none;
   padding: 0 0.5rem;
