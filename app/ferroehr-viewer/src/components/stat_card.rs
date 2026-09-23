@@ -29,7 +29,7 @@ pub fn StatCard(
     let inner = view! {
         <div class="flex items-center gap-3">
             <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-control bg-accent-subtle text-accent-ink">
-                <Icon icon width="20" height="20" />
+                <Icon icon width="20" height="20" attr:aria-hidden="true" />
             </span>
             <div class="min-w-0">
                 <div class="text-2xl font-semibold tabular-nums text-ink">

@@ -405,7 +405,7 @@ fn nav_entry(
                     move || !is_active(),
                 )
             >
-                <Icon icon width="16" height="16" />
+                <Icon icon width="16" height="16" attr:aria-hidden="true" />
                 {label}
             </a>
         </li>
@@ -563,9 +563,9 @@ fn authed_shell(
         >
             {move || {
                 if is_dark.get() {
-                    view! { <Icon icon=icondata_lu::LuSun width="16" height="16" /> }.into_any()
+                    view! { <Icon icon=icondata_lu::LuSun width="16" height="16" attr:aria-hidden="true" /> }.into_any()
                 } else {
-                    view! { <Icon icon=icondata_lu::LuMoon width="16" height="16" /> }.into_any()
+                    view! { <Icon icon=icondata_lu::LuMoon width="16" height="16" attr:aria-hidden="true" /> }.into_any()
                 }
             }}
         </button>
@@ -624,7 +624,7 @@ fn authed_shell(
                         type="button"
                         class="inline-flex items-center gap-2 rounded-control px-2 py-1.5 text-sm font-medium text-ink hover:bg-sunken focus:outline-none focus:ring-2 focus:ring-accent"
                     >
-                        <Icon icon=icondata_lu::LuCircleUser width="18" height="18" />
+                        <Icon icon=icondata_lu::LuCircleUser width="18" height="18" attr:aria-hidden="true" />
                         {identity_text()}
                     </button>
                 </div>
@@ -795,7 +795,7 @@ fn authed_shell(
                 class="flex h-8 w-8 items-center justify-center rounded-control text-ink-muted hover:bg-sunken hover:text-ink md:hidden"
                 on:click=move |_| nav_open.update(|open| *open = !*open)
             >
-                <Icon icon=icondata_lu::LuMenu width="18" height="18" />
+                <Icon icon=icondata_lu::LuMenu width="18" height="18" attr:aria-hidden="true" />
             </button>
             <a href="/" class="flex items-center">
                 <Wordmark />

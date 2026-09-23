@@ -80,6 +80,12 @@ workflow refuses a tag that has no matching section here.
 
 ### Fixed
 
+- **Viewer decorative icons were hidden from assistive technology** (#2). The
+  `leptos_icons` `<Icon>` renders an `<svg>` with no `aria-hidden`, so decorative
+  icons on the audited routes (sidebar nav, stat cards, empty states, and the
+  theme-toggle, menu, and user-menu buttons) were announced to screen readers as
+  unnamed graphics (WCAG 2.2 1.1.1). Each now carries `aria-hidden="true"`; every
+  affected control keeps its own name or adjacent text.
 - **Viewer light theme met the contrast minimum** (#1). In light mode the teal
   accent (`--accent`) read at 3.74:1 as text on white and the sandbox notice
   read at 2.86:1, both below the WCAG 2.2 1.4.3 AA floor of 4.5:1, on every
