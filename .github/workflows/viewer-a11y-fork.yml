@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Vernum Projecten B.V.
+# SPDX-License-Identifier: BUSL-1.1
+#
 # Fork-only viewer accessibility report (mgifford/FerroEHR).
 #
 # Composes the published FerroEHR stack (server + PostgreSQL + viewer), logs in
@@ -55,7 +58,7 @@ jobs:
         run: docker compose up -d --no-build ferroehr ferroehr-viewer
       - name: Wait for the CDR to report UP
         run: |
-          for i in $(seq 1 60); do
+          for _ in $(seq 1 60); do
             if curl -sf http://localhost:8080/ferroehr/rest/status >/dev/null; then
               echo "CDR up"; exit 0
             fi
@@ -64,14 +67,18 @@ jobs:
           echo "CDR did not come up in time"; docker compose logs --tail=50 ferroehr; exit 1
       - name: Wait for the viewer to answer
         run: |
-          for i in $(seq 1 40); do
+          for _ in $(seq 1 40); do
             code=$(curl -s -o /dev/null -w '%{http_code}' -L http://localhost:3000/login || true)
             if [ "$code" = "200" ]; then echo "viewer up"; exit 0; fi
             sleep 3
           done
           echo "viewer did not answer in time"; docker compose logs --tail=50 ferroehr-viewer; exit 1
+      # Ad-hoc npm/npx installs are intentional for a report lane: the axe +
+      # playwright peer deps are deliberately not in this repo's manifest
+      # (the prompt-only / manifest-hygiene rule), so they are installed at
+      # run time here rather than vendored.
       - name: Accessibility report (axe-core, both themes, authenticated)
-        run: |
+        run: | # zizmor: ignore[adhoc-packages]
           npm install --no-save @axe-core/playwright playwright
           npx playwright install --with-deps chromium
           node scripts/site/axe-scan-viewer.mjs http://127.0.0.1:3000 ferroehr ferroehr

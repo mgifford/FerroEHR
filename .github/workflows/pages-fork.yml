@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Vernum Projecten B.V.
+# SPDX-License-Identifier: BUSL-1.1
+#
 # Fork-only GitHub Pages workflow (mgifford/FerroEHR).
 #
 # Publishes the documentation site (landing + the dev mdBook) to this fork's
