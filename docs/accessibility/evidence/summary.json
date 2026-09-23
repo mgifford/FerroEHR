@@ -1,0 +1,57 @@
+{
+  "base": "http://localhost:3000",
+  "scanned_at": "2026-09-22T12:50:05.353Z",
+  "axe_version": "4.13.0",
+  "pages_scanned": 9,
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "rules": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "wcag": [
+        "wcag2aa",
+        "wcag143"
+      ],
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "totalNodes": 83,
+      "pages": 9
+    },
+    {
+      "id": "svg-img-alt",
+      "impact": "serious",
+      "wcag": [
+        "wcag2a",
+        "wcag111"
+      ],
+      "help": "<svg> elements with an img or image role must have alternative text",
+      "totalNodes": 246,
+      "pages": 18
+    },
+    {
+      "id": "scrollable-region-focusable",
+      "impact": "serious",
+      "wcag": [
+        "wcag2a",
+        "wcag211",
+        "wcag213"
+      ],
+      "help": "Scrollable region must have keyboard access",
+      "totalNodes": 4,
+      "pages": 2
+    }
+  ],
+  "nodes_by_rule_theme": {
+    "light": {
+      "color-contrast": 83,
+      "svg-img-alt": 123,
+      "scrollable-region-focusable": 2
+    },
+    "dark": {
+      "svg-img-alt": 123,
+      "scrollable-region-focusable": 2
+    }
+  }
+}
