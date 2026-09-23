@@ -1,0 +1,854 @@
+[
+  {
+    "name": "dashboard",
+    "theme": "light",
+    "url": "http://localhost:3000/",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 3,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > .font-medium",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 17,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "a[aria-current=\"page\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "dashboard",
+    "theme": "dark",
+    "url": "http://localhost:3000/",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 17,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "a[aria-current=\"page\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "templates",
+    "theme": "light",
+    "url": "http://localhost:3000/templates",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 4,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "templates",
+    "theme": "dark",
+    "url": "http://localhost:3000/templates",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "queries",
+    "theme": "light",
+    "url": "http://localhost:3000/queries",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 4,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "queries",
+    "theme": "dark",
+    "url": "http://localhost:3000/queries",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "ehrs",
+    "theme": "light",
+    "url": "http://localhost:3000/ehrs",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 5,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 12,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "ehrs",
+    "theme": "dark",
+    "url": "http://localhost:3000/ehrs",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 12,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "demographics",
+    "theme": "light",
+    "url": "http://localhost:3000/demographics/person",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 5,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "demographics",
+    "theme": "dark",
+    "url": "http://localhost:3000/demographics/person",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "terminology",
+    "theme": "light",
+    "url": "http://localhost:3000/terminology",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 3,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 12,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "terminology",
+    "theme": "dark",
+    "url": "http://localhost:3000/terminology",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 12,
+        "samples": [
+          {
+            "target": ".px-2 > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "operations",
+    "theme": "light",
+    "url": "http://localhost:3000/operations",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 6,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 18,
+        "samples": [
+          {
+            "target": ".px-2[type=\"button\"] > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "operations",
+    "theme": "dark",
+    "url": "http://localhost:3000/operations",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 18,
+        "samples": [
+          {
+            "target": ".px-2[type=\"button\"] > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "audit",
+    "theme": "light",
+    "url": "http://localhost:3000/audit",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 38,
+        "samples": [
+          {
+            "target": ".text-base > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > span",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 12,
+        "samples": [
+          {
+            "target": ".inline-flex.px-2[type=\"button\"] > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "audit",
+    "theme": "dark",
+    "url": "http://localhost:3000/audit",
+    "violations": [
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 12,
+        "samples": [
+          {
+            "target": ".inline-flex.px-2[type=\"button\"] > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "system",
+    "theme": "light",
+    "url": "http://localhost:3000/system",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "wcag": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "nodes": 15,
+        "samples": [
+          {
+            "target": ".text-base > .text-accent",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 3.74 (foreground color: #0d9488, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": "#deployment-notice > .font-medium",
+            "failureSummary": "Fix any of the following: Element has insufficient color contrast of 2.86 (foreground color: #d97706, background color: #fef3c7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "help": "Scrollable region must have keyboard access",
+        "wcag": [
+          "wcag2a",
+          "wcag211",
+          "wcag213"
+        ],
+        "nodes": 2,
+        "samples": [
+          {
+            "target": ".overflow-x-auto",
+            "failureSummary": "Fix any of the following: Element should have focusable content Element should be focusable"
+          },
+          {
+            "target": "pre",
+            "failureSummary": "Fix any of the following: Element should have focusable content Element should be focusable"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": "#user-menu-trigger > button[type=\"button\"] > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  },
+  {
+    "name": "system",
+    "theme": "dark",
+    "url": "http://localhost:3000/system",
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "help": "Scrollable region must have keyboard access",
+        "wcag": [
+          "wcag2a",
+          "wcag211",
+          "wcag213"
+        ],
+        "nodes": 2,
+        "samples": [
+          {
+            "target": ".overflow-x-auto",
+            "failureSummary": "Fix any of the following: Element should have focusable content Element should be focusable"
+          },
+          {
+            "target": "pre",
+            "failureSummary": "Fix any of the following: Element should have focusable content Element should be focusable"
+          }
+        ]
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": "serious",
+        "help": "<svg> elements with an img or image role must have alternative text",
+        "wcag": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "nodes": 13,
+        "samples": [
+          {
+            "target": "#user-menu-trigger > button[type=\"button\"] > svg[width=\"18\"][height=\"18\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": "button[aria-label=\"Toggle dark mode\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          },
+          {
+            "target": ".group.gap-2\\.5[href=\"/\"] > svg[width=\"16\"][height=\"16\"][stroke-linejoin=\"round\"]",
+            "failureSummary": "Fix any of the following: Element has no child that is a title aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "axe_version": "4.13.0",
+    "themeSet": true
+  }
+]

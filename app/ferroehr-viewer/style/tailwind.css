@@ -26,14 +26,14 @@
   --ink: #0f172a; /* primary text */
   --ink-muted: #64748b; /* secondary text, labels */
   --ink-faint: #94a3b8; /* placeholders, disabled */
-  --accent: #0d9488; /* the ONE brand accent (teal) */
-  --accent-hover: #0f766e;
+  --accent: #0f766e; /* the ONE brand accent (teal); text on white = 5.47:1, WCAG 2.2 1.4.3 AA (was #0d9488 = 3.74:1, fail) */
+  --accent-hover: #115e59;
   --accent-subtle: #ccfbf1; /* accent-tinted chips/backgrounds */
   --accent-ink: #115e59; /* text on accent-subtle */
   --on-accent: #ffffff; /* text on solid accent */
   --ok: #059669;
   --ok-subtle: #d1fae5;
-  --warn: #d97706;
+  --warn: #92400e; /* text on --warn-subtle = 6.37:1, WCAG 2.2 1.4.3 AA (was #d97706 = 2.86:1, fail) */
   --warn-subtle: #fef3c7;
   --danger: #dc2626;
   --danger-subtle: #fee2e2;

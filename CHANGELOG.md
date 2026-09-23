@@ -86,6 +86,11 @@ workflow refuses a tag that has no matching section here.
   theme-toggle, menu, and user-menu buttons) were announced to screen readers as
   unnamed graphics (WCAG 2.2 1.1.1). Each now carries `aria-hidden="true"`; every
   affected control keeps its own name or adjacent text.
+- **Viewer light theme met the contrast minimum** (#1). In light mode the teal
+  accent (`--accent`) read at 3.74:1 as text on white and the sandbox notice
+  read at 2.86:1, both below the WCAG 2.2 1.4.3 AA floor of 4.5:1, on every
+  page. The accent token moves to `#0f766e` (5.47:1) and the warn token to
+  `#92400e` (6.37:1); dark mode was already compliant and is unchanged.
 - **A date with text after it compares as no date** (#3436). `openehr_date_days`
   read the leading four, six or eight characters of a value and ignored the
   rest, so `20210102XYZ`, `2021-01-02 BC`, `2021-01-02 Europe/Amsterdam` and

@@ -10,8 +10,14 @@
 
 use std::collections::HashMap;
 
-/// The teal brand ramp, Fluent variant keys 10 (darkest) → 160 (lightest);
-/// variant 80 is the primary accent (`--accent` in the token layer).
+/// The teal brand ramp, Fluent variant keys 10 (darkest) → 160 (lightest).
+///
+/// The token layer's `--accent` (`style/tailwind.css`) is variant 60
+/// (`#0f766e`): variant 80 (`#0d9488`) as accent text on white is 3.74:1 and
+/// fails WCAG 2.2 1.4.3 AA, so the CSS accent was moved to 60 (5.47:1). The
+/// thaw widget accent still resolves from this ramp's primary slot — verify
+/// widget text/affordance contrast on a build and align the primary slot if it
+/// still resolves to 80.
 const BRAND: [(i32, &str); 16] = [
     (10, "#031b19"),
     (20, "#042f2e"),
