@@ -1,26 +1,30 @@
 // SPDX-FileCopyrightText: Vernum Projecten B.V.
 // SPDX-License-Identifier: BUSL-1.1
 //
-// Accessibility report for the assembled static site (_site).
+// Accessibility report + gate for the assembled static site (_site).
 //
 // Serves the built tree and runs axe-core (WCAG 2.2 A/AA) against the landing
-// page and representative book pages, printing a grouped report and writing
-// axe-report.json. It is NON-BLOCKING by design: it always exits 0, because
-// the mdBook-generated book pages carry theme issues this repository did not
-// author and cannot fix here (sidebar-toggle ARIA, theme contrast, nav
-// target-size). Blocking on those would be red-for-things-the-author-cannot-fix
-// — the same anti-pattern docs.yml documents for external link-checking.
+// page and the book pages under every mdBook theme, printing a grouped report
+// and writing axe-report.json.
 //
-// Findings are split into author-controlled (the landing page under
-// website/landing/, ours) and upstream (the mdBook book), so the actionable
-// set is obvious. Tighten to blocking on the author-controlled set once it is
-// clean — that is the intended next step.
+// TWO modes:
+//   - default (report): always exits 0. Full visibility, no enforcement.
+//   - --strict (gate):  exits 1 if any finding is in GATE_RULES (see below) —
+//     rule classes on pages we control that are currently CLEAN, so an
+//     occurrence is a regression we caused. Everything outside GATE_RULES stays
+//     report-only, so upstream mdBook chrome issues (sidebar-toggle ARIA,
+//     target-size on the print/git icons) never fail a build we cannot fix —
+//     the anti-pattern docs.yml documents for external link-checking.
+//
+// The gate is a ratchet: GATE_RULES widens only after a class is clean in a
+// deployed build, never the other way.
 //
 // Detector, not a conformance verdict: axe covers ~30-40% of WCAG. A clean run
 // means axe found nothing in its rule set on the scanned pages, not that the
 // site is fully conformant.
 //
-// Usage: node scripts/site/axe-scan.mjs <site-dir> [base-path]
+// Usage: node scripts/site/axe-scan.mjs [--strict] <site-dir> [base-path]
+//   --strict   fail (exit 1) on any finding in GATE_RULES
 //   site-dir   the assembled _site directory
 //   base-path  the sub-path the site is served under (default "/FerroEHR",
 //              matching the fork's project-pages base); "" for apex-root.
@@ -34,12 +38,28 @@ import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { join, extname, normalize } from "node:path";
 
-const SITE_DIR = process.argv[2];
-const BASE = process.argv[3] ?? "/FerroEHR";
+const args = process.argv.slice(2);
+const STRICT = args.includes("--strict");
+const positional = args.filter(a => !a.startsWith("--"));
+const SITE_DIR = positional[0];
+const BASE = positional[1] ?? "/FerroEHR";
 if (!SITE_DIR) {
-  console.error("usage: node axe-scan.mjs <site-dir> [base-path]");
+  console.error("usage: node axe-scan.mjs [--strict] <site-dir> [base-path]");
   process.exit(2);
 }
+
+// The gate set: rule classes on pages we control that are currently CLEAN, so
+// any occurrence is a regression we caused. With --strict, a finding matching
+// an entry here fails the build (exit 1); everything else stays a report.
+//
+// Deliberately NARROW — it names only what is proven clean and ours to fix:
+//   - color-contrast: our theme tokens (landing + book custom.css), cleared in
+//     #8/#11/#15/#16/#18.
+//   - link-in-text-block: our link styling, cleared in #11 (landing) / #16 (book).
+// NOT gated (report-only): target-size and aria on mdBook's own chrome
+// (upstream), and anything not yet proven clean. Widen this set only after the
+// class is clean in a deployed build — the ratchet only tightens.
+const GATE_RULES = new Set(["color-contrast", "link-in-text-block"]);
 
 // Pages to scan, as paths under BASE. Representative, not exhaustive: the
 // landing page and book pages that exercise prose, tables, and code. Both
@@ -212,6 +232,26 @@ writeFileSync("axe-report.json", JSON.stringify({
 
 console.log(`\nReport written to axe-report.json.`);
 console.log(`Landing: ${nodesOf(landing)} node(s). Book (all themes): ${nodesOf(book)} node(s).`);
-console.log("Non-blocking report (exit 0). Tighten to blocking on the authored set once it is clean.");
-// Always succeed — this is a report, not yet a gate (see the header).
+
+// The gate: findings whose rule is in GATE_RULES are regressions in a class we
+// have cleared. Reported always; they fail the build only under --strict.
+const gated = report.filter(r => GATE_RULES.has(r.id));
+if (gated.length > 0) {
+  console.log(`\nGATED-RULE findings (${nodesOf(gated)} node(s)) — a regression in a cleared class:`);
+  for (const r of gated) {
+    const where = r.theme ? `${r.page} [${r.theme}]` : r.page;
+    console.log(`  [${r.impact}] ${r.id} — ${r.nodes} node(s) on ${where}`);
+    for (const t of r.targets) console.log(`      ${t}`);
+  }
+}
+
+if (STRICT) {
+  if (gated.length > 0) {
+    console.error(`\nFAIL (--strict): ${nodesOf(gated)} node(s) in gated rule classes (${[...GATE_RULES].join(", ")}). These are regressions — fix them or, if genuinely upstream and unfixable, narrow GATE_RULES with a recorded reason.`);
+    process.exit(1);
+  }
+  console.log("\nPASS (--strict): no findings in the gated rule classes.");
+  process.exit(0);
+}
+console.log("\nReport mode (exit 0). Pass --strict to fail on the gated rule classes.");
 process.exit(0);
