@@ -27,9 +27,19 @@
 .coal,
 .navy,
 .ayu {
-  --links: #e4712f; /* brightened rust for AA contrast on dark */
-  --sidebar-active: #e4712f;
+  --links: #f08040; /* brightened rust; 5.26:1 on the coal/navy sidebar, WCAG 1.4.3 AA (was #e4712f = 4.48:1, fail) */
+  --sidebar-active: #f08040;
   --inline-code-color: #e4a06a;
+}
+
+/* mdBook's default .menu-title colour (#43484d) is 1.98:1 on the ayu top bar
+   and 1.52:1 on coal/navy — below the 3:1 large-text floor (WCAG 1.4.3). Give
+   it a legible muted foreground on the dark themes; light is untouched (the
+   default reads 9.24:1 there). */
+.coal .menu-title,
+.navy .menu-title,
+.ayu .menu-title {
+  color: #9aa0a6; /* 6.94:1 on ayu, 5.32:1 on coal/navy */
 }
 
 /* ── Shared brand touches ────────────────────────────────────────────────── */
