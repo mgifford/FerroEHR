@@ -55,6 +55,21 @@
   min-height: 24px;
   display: flex;
   align-items: center;
+/* ── Code syntax-highlight contrast (mdBook's highlight.js themes) ─────────── */
+/* mdBook's bundled highlight themes miss the WCAG 1.4.3 4.5:1 floor on two
+   tokens; override them (custom.css loads after the highlight CSS). */
+/* Light: .hljs-string #008200 is 4.34:1 on the code background. Scoped to the
+   light themes only — #007000 on a dark code bg is 2.61:1, so a global override
+   would break the dark themes (they keep their own lighter green). */
+.light .hljs-string,
+.rust .hljs-string {
+  color: #007000; /* 5.48:1 on the light code background #f6ede7 */
+}
+/* Dark: .hljs-comment #5c6773 is 2.87:1 on both coal and ayu code backgrounds. */
+.coal .hljs-comment,
+.navy .hljs-comment,
+.ayu .hljs-comment {
+  color: #8a95a3; /* 5.44:1 on coal, 5.46:1 on ayu */
 }
 
 /* ── Shared brand touches ────────────────────────────────────────────────── */

@@ -79,7 +79,7 @@ jobs:
         run: |
           npm install --no-save @axe-core/playwright playwright
           npx playwright install --with-deps chromium
-          node scripts/site/axe-scan.mjs _site /FerroEHR
+          node scripts/site/axe-scan.mjs --strict _site /FerroEHR
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: _site
