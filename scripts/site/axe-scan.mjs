@@ -77,9 +77,11 @@ const BOOK_PAGES = [
 
 // mdBook's theme is a class on <html> + a localStorage key, NOT
 // prefers-color-scheme — so contrast varies by theme and each must be scanned.
-// light: the light theme; coal: the preferred dark; ayu: the darkest (worst
-// case for contrast). Set before mdBook's own script runs (addInitScript).
-const BOOK_THEMES = ["light", "coal", "ayu"];
+// light: the light theme; rust: the default here — light CONTENT but a DARK
+// sidebar/chrome, a distinct contrast surface that light-only fixes miss;
+// coal: the preferred dark; ayu: the darkest (worst case). Set before mdBook's
+// own script runs (addInitScript).
+const BOOK_THEMES = ["light", "rust", "coal", "ayu"];
 
 const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
