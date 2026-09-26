@@ -75,8 +75,11 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
+      # Ad-hoc npm/npx installs are intentional for a report lane: the axe +
+      # playwright peer deps are deliberately not vendored in this repo's
+      # manifest, so they are installed at run time here rather than committed.
       - name: Accessibility gate (axe-core over _site)
-        run: |
+        run: | # zizmor: ignore[adhoc-packages]
           npm install --no-save @axe-core/playwright playwright
           npx playwright install --with-deps chromium
           node scripts/site/axe-scan.mjs --strict _site /FerroEHR
