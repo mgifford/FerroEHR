@@ -86,16 +86,21 @@
    text without relying on colour (WCAG 2.2 1.4.1); axe reports the rust link
    colour as link-in-text-block otherwise. Heading anchor links opt out below —
    they are not in a text block and the underline would be noise. */
-.content a,
-.content a:visited {
+/* Address by the id (#mdbook-content = .content) so specificity is 1,0,1 and
+   beats mdBook's own `.content a { text-decoration: none }` (0,1,1) by the
+   cascade, not by stylesheet load order — which is fragile and was letting the
+   underline silently lose. */
+#mdbook-content a,
+#mdbook-content a:visited {
   color: var(--links);
   text-decoration: underline;
 }
-.content a:hover {
+#mdbook-content a:hover {
   color: var(--rs-rust-600);
 }
-/* Heading anchor links (mdBook's `.header`) are not prose — no underline. */
-.content a.header {
+/* Heading anchor links (mdBook's `.header`) are not prose — no underline. The
+   id keeps this above the base rule too. */
+#mdbook-content a.header {
   text-decoration: none;
 }
 
