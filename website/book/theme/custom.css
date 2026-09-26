@@ -18,6 +18,15 @@
   --search-mark-bg: #e4a06a;
 }
 
+/* The rust theme pairs LIGHT content with a DARK sidebar (#3b2e2a), so its
+   active link (--rs-rust #b7410e) reads 2.34:1 there — WCAG 1.4.3 fail. The
+   `light` theme keeps a light sidebar (#fafafa, 5.5:1) and is untouched. Give
+   rust the dark-theme active colour (#f08040 = 4.89:1 on its sidebar); --links
+   stays #b7410e because rust's CONTENT is light. */
+.rust {
+  --sidebar-active: #f08040;
+}
+
 .light .content code,
 .rust .content code {
   background-color: var(--rs-umber-050);
