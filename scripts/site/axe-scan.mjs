@@ -48,17 +48,24 @@ if (!SITE_DIR) {
   process.exit(2);
 }
 
-// The gate set: rule classes on pages we control that are currently CLEAN, so
-// any occurrence is a regression we caused. With --strict, a finding matching
-// an entry here fails the build (exit 1); everything else stays a report.
+// The gate set: rule classes that fail the build under --strict, scoped to the
+// LANDING page only (website/landing/ — HTML and CSS we fully own and that is
+// proven clean). A finding here is a regression we caused.
 //
-// Deliberately NARROW — it names only what is proven clean and ours to fix:
-//   - color-contrast: our theme tokens (landing + book custom.css), cleared in
-//     #8/#11/#15/#16/#18.
-//   - link-in-text-block: our link styling, cleared in #11 (landing) / #16 (book).
-// NOT gated (report-only): target-size and aria on mdBook's own chrome
-// (upstream), and anything not yet proven clean. Widen this set only after the
-// class is clean in a deployed build — the ratchet only tightens.
+//   - color-contrast: the landing palette tokens, cleared in #11.
+//   - link-in-text-block: landing link styling, cleared in #11.
+//
+// BOOK pages are report-only for EVERY rule, deliberately. Their contrast and
+// link-in-text findings depend on mdBook's own theme CSS (link colour vs body
+// text, text-decoration) which is partly upstream and which we override in
+// custom.css — and an override only takes effect once the deploy that carries
+// it succeeds. Hard-gating a book class therefore deadlocks: the gate fails →
+// the deploy is blocked → the custom.css fix never reaches the live site → the
+// gate keeps seeing the old CSS and keeps failing. (That deadlock is exactly
+// what happened when link-in-text-block was gated for book pages.) Book defects
+// are tracked in docs/accessibility/upstream-defects.md and watched via the
+// report, not the gate. Widen this scope to book pages only after the class is
+// clean in a DEPLOYED build.
 const GATE_RULES = new Set(["color-contrast", "link-in-text-block"]);
 
 // Pages to scan, as paths under BASE. Representative, not exhaustive: the
@@ -233,11 +240,14 @@ writeFileSync("axe-report.json", JSON.stringify({
 console.log(`\nReport written to axe-report.json.`);
 console.log(`Landing: ${nodesOf(landing)} node(s). Book (all themes): ${nodesOf(book)} node(s).`);
 
-// The gate: findings whose rule is in GATE_RULES are regressions in a class we
-// have cleared. Reported always; they fail the build only under --strict.
-const gated = report.filter(r => GATE_RULES.has(r.id));
+// The gate: a finding fails the build only if its rule is in GATE_RULES AND it
+// is on a landing (authored) page. Book findings are report-only for every rule
+// (see the GATE_RULES comment: book contrast/link classes depend on partly-
+// upstream theme CSS and can deadlock the deploy). Reported always; fails the
+// build only under --strict.
+const gated = report.filter(r => r.scope === "authored" && GATE_RULES.has(r.id));
 if (gated.length > 0) {
-  console.log(`\nGATED-RULE findings (${nodesOf(gated)} node(s)) — a regression in a cleared class:`);
+  console.log(`\nGATED-RULE findings (${nodesOf(gated)} node(s)) — a regression in a cleared class on an authored page:`);
   for (const r of gated) {
     const where = r.theme ? `${r.page} [${r.theme}]` : r.page;
     console.log(`  [${r.impact}] ${r.id} — ${r.nodes} node(s) on ${where}`);
@@ -247,11 +257,11 @@ if (gated.length > 0) {
 
 if (STRICT) {
   if (gated.length > 0) {
-    console.error(`\nFAIL (--strict): ${nodesOf(gated)} node(s) in gated rule classes (${[...GATE_RULES].join(", ")}). These are regressions — fix them or, if genuinely upstream and unfixable, narrow GATE_RULES with a recorded reason.`);
+    console.error(`\nFAIL (--strict): ${nodesOf(gated)} node(s) in gated rule classes (${[...GATE_RULES].join(", ")}) on authored pages. These are regressions in our own content — fix them.`);
     process.exit(1);
   }
-  console.log("\nPASS (--strict): no findings in the gated rule classes.");
+  console.log("\nPASS (--strict): no gated-class findings on authored pages. (Book findings are report-only — see docs/accessibility/upstream-defects.md.)");
   process.exit(0);
 }
-console.log("\nReport mode (exit 0). Pass --strict to fail on the gated rule classes.");
+console.log("\nReport mode (exit 0). Pass --strict to fail on gated-class findings on authored pages.");
 process.exit(0);
