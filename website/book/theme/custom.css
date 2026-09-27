@@ -12,7 +12,12 @@
 /* ── Light themes (light / rust) ─────────────────────────────────────────── */
 .light,
 .rust {
-  --links: var(--rs-rust);
+  /* Links use the darker rust (--rs-rust-600, #9a360b) rather than --rs-rust
+     (#b7410e): #b7410e is only 4.24:1 on the light callout tint (#e1e1db) and
+     3.96:1 on the deeper tint (#dadad3), under the WCAG 1.4.3 4.5:1 floor.
+     #9a360b clears every light surface (>= 5.14:1 on the worst tint, 5.9:1 on
+     white). --rs-rust stays the brand fill for non-text uses. */
+  --links: var(--rs-rust-600);
   --sidebar-active: var(--rs-rust);
   --inline-code-color: var(--rs-umber);
   --search-mark-bg: #e4a06a;
@@ -96,7 +101,16 @@
   text-decoration: underline;
 }
 #mdbook-content a:hover {
-  color: var(--rs-rust-600);
+  /* Links now rest at --rs-rust-600, so hover goes one step darker to stay a
+     visible state change; #7f2c09 is 6.6:1 on the worst light tint (still AA).
+     On dark themes --links (#f08040) is lighter than this, so the dark hover is
+     restated below. */
+  color: #7f2c09;
+}
+.coal #mdbook-content a:hover,
+.navy #mdbook-content a:hover,
+.ayu #mdbook-content a:hover {
+  color: #ffab6b; /* lighter than the dark --links #f08040; 8.0:1 on coal bg */
 }
 /* Heading anchor links (mdBook's `.header`) are not prose — no underline. The
    id keeps this above the base rule too. */
